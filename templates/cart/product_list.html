@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0">
+                
+                <form 
+                method="GET">
+                    <div class="input-group">
+                        <input type="text"  class="form-control bg-light border-1 small"  placeholder="Buscar..." name="buscar" value="">
+                        <div>
+                            <button  class="btn btn-primary " type="submit">
+                                <i class="fas fa-search fa-sm "></i>
+                            </button>
+                        </div>
+                    </div>
+                </form> 
+                
+                <a href="{% url 'home' %}">Home</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-block">Shop</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+
+            {% for product in object_list %}
+                <div class="col-6 col-sm-4 col-md-3">
+                    <div class= "card text-center border-info ">
+                        <div  class="card"> 
+                            <a href="{{ product.get_absolute_url }}"><img class="card-img-top"  src={{ product.image.url }}></a>
+                            <div class="card-body">
+                                <a href="{{ product.get_absolute_url }}"><h3 class="card-title">{{ product.title }}</h3></a>
+                                <a href="{{ product.get_absolute_url }}"><h4 class="card-text">{{ product.descritption }}</h4></a>
+                                <a href="{{ product.get_absolute_url }}"><h4 class="card-text"> ${{ product.get_price }}  </h4></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            
+            
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
